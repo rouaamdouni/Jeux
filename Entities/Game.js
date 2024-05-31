@@ -34,15 +34,18 @@ export class Game {
 
   async startAutomaticTour() {
     if (this.tourStarted) {
-      // Move blue warriors first
+      // Move blue warriors first with a delay
       this.moveWarriors("blue");
 
       // Move red warriors after a delay of 0.5 seconds
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 500));
       await this.moveWarriors("red");
 
       // Render the board after both movements
       this.renderBoard();
+
+      // Check for victory conditions
+      this.checkVictory();
     }
   }
 
@@ -164,6 +167,67 @@ export class Game {
     console.log("---------Fighting Ended----------");
   }
 
+  // battleWarriors(tile, index) {
+  //   console.log("---------Fighting Started----------");
+
+  //   let blueDamageAccumulator = 0;
+  //   let redDamageAccumulator = 0;
+
+  //   while (tile.blue.length > 0 && tile.red.length > 0) {
+  //     // Blue will attack first; each blue warrior will attack each red warrior
+  //     for (let i = 0; i < tile.blue.length && tile.red.length > 0; i++) {
+  //       const blueWarrior = tile.blue[i];
+  //       const newblueDamage = blueWarrior.attack();
+  //       const blueDamage = newblueDamage + blueDamageAccumulator;
+  //       console.log();
+  //       blueDamageAccumulator = 0; // Reset the accumulator
+  //       tile.red[0].takeDamage(blueDamage);
+
+  //       console.log(
+  //         ` Tile ${index + 1}: Blue ${blueWarrior.name} | ${
+  //           blueWarrior.healthPoints
+  //         } attacks Red ${
+  //           tile.red[0].name
+  //         } for the random${newblueDamage} ,finaldamage ${blueDamage}. | ${
+  //           tile.red[0].healthPoints
+  //         }`
+  //       );
+
+  //       if (tile.red[0].healthPoints <= 0) {
+  //         console.log(`${tile.red[0].name} is dead.`);
+  //         tile.red.shift();
+  //         blueDamageAccumulator = -tile.red[0].healthPoints;
+  //       }
+  //       this.checkVictory();
+  //     }
+
+  //     // Red will attack second; each red warrior will attack each blue warrior
+  //     for (let i = 0; i < tile.red.length && tile.blue.length > 0; i++) {
+  //       const redWarrior = tile.red[i];
+  //       const redDamage = redWarrior.attack() + redDamageAccumulator;
+  //       redDamageAccumulator = 0; // Reset the accumulator
+  //       tile.blue[0].takeDamage(redDamage);
+
+  //       console.log(
+  //         `Tile ${index + 1}: Red ${redWarrior.name} attacks Blue ${
+  //           tile.blue[0].name
+  //         } for ${redDamage} damage. | ${tile.blue[0].healthPoints}`
+  //       );
+
+  //       if (tile.blue[0].healthPoints <= 0) {
+  //         console.log(`${tile.blue[0].name} is dead.`);
+  //         tile.blue.shift();
+  //         blueDamageAccumulator = -tile.red[0].healthPoints;
+  //       }
+  //       this.checkVictory();
+  //     }
+  //   }
+
+  //   this.tourStarted = false; // Set tourStarted flag to false after fighting ends
+  //   this.updateResources();
+  //   console.log("---------Fighting Ended----------");
+  // }
+
   updateResources() {
     this.blueCastle.trainingArea.innerHTML = "";
     this.redCastle.trainingArea.innerHTML = "";
@@ -214,12 +278,15 @@ export class Game {
   }
 
   checkVictory() {
-    console.log("Checking for victory");
-    console.log(this.board[4].blue);
-    console.log(this.board[0].red);
+    // console.log("Checking for victory");
 
     // Check if the last tile (index 4) has blue warriors
     if (this.board[4].blue.length > 0) {
+      console.log(this.board[0].blue, this.board[0].blue.length);
+      console.log(this.board[1].blue, this.board[1].blue.length);
+      console.log(this.board[2].blue, this.board[2].blue.length);
+      console.log(this.board[3].blue, this.board[3].blue.length);
+      console.log(this.board[4].blue, this.board[4].blue.length);
       this.renderBoard();
       setTimeout(() => {
         alert("Blue team wins!");
@@ -228,6 +295,11 @@ export class Game {
     }
     // Check if the last tile (index 4) has red warriors
     else if (this.board[0].red.length > 0) {
+      console.log(this.board[0].red, this.board[0].red.length);
+      console.log(this.board[1].red, this.board[1].red.length);
+      console.log(this.board[2].red, this.board[2].red.length);
+      console.log(this.board[3].red, this.board[3].red.length);
+      console.log(this.board[4].red, this.board[4].red.length);
       this.renderBoard();
       setTimeout(() => {
         alert("Red team wins!");
