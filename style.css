@@ -19,12 +19,14 @@ body .game {
   background-image: url(/images/background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+ 
 }
 
 .game {
   background-color: black;
   width: 100vw;
   height: 100vh;
+  position: relative;
 }
 .game h1 {
   color: white;
@@ -99,25 +101,101 @@ body .game {
 
 
 .castleTrainings .castle1Data {
-  background-image: url(/images/redCastle.png);
+  background-image: url(/images/redCastle.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  width: 40%;
+  background-position: center;
+  width: 50%;
   position: relative;
   padding: 10px;
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
  
 }
 
 .castleTrainings .castle2Data {
-  background-image: url(/images/blueCastle.png);
+  background-image: url(/images/blueCastle.jpg);
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  width: 40%;
-  position: relative;
+  width: 50%;
   padding: 10px;
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
+.castle1Data > h4 {
+  color: rgb(236, 0, 0);
+  font-size: 1.5rem;
+  margin: 10px;
+  text-align: center;
+}
+
+.castle2Data > h4 {
+  color: rgb(2, 65, 201);
+  font-size: 1.5rem;
+  margin: 10px;
+  text-align: center;
+}
+
+.castle1Data  #trainRedWarriors {
+  /* this is the button to open popup of traing */
+  background-color: black;
+  font-family: "Press Start 2P", system-ui;
+  color: white;
+  width: 320px;
+  height: 50px;
+  border: solid black 1 px;
+  padding: 6px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.castle2Data  #trainBlueWarriors {
+  /* this is the button to open popup of traing */
+  background-color:  black;
+  font-family: "Press Start 2P", system-ui;
+  color: white;
+  width: 320px;
+  height: 50px;
+  border: solid black 1 px;
+  padding: 6px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+  
+  border-radius: 5px;
+}
+
+.castle1Data  #trainRedWarriors:hover {
+  background-color: white;
+  color: black;
+}
+
+.castle2Data  #trainBlueWarriors:hover {
+  background-color: white;
+  color: black;
+}
+
+
+
+
+
+
 
 .castleTrainings .gameControls {
 
@@ -158,8 +236,8 @@ body .game {
   color : white;
   z-index: 20;
   position: absolute;
-  top: 20%;
-  left: 60%;
+  top: 10%;
+  left: 30%;
   padding: 10px;
   border: solid black 2px;
   width: 700px;
@@ -223,20 +301,75 @@ body .game {
 }
 
 .redWarriors {
-  background-color: rgb(252, 105, 105);
+  /* the back of the card is blur */
+  backdrop-filter: blur(2px);
+  color : white;
+  z-index: 20;
+  position: absolute;
+  top: 20%;
+  right:95%;
   padding: 10px;
   border: solid black 2px;
-  width: 30%;
+  width: 700px;
+  height: 500px;
+  gap: 10px;
+  align-items: center;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 0%;
-  left: 70%;
-  border-radius: 20px;
+  background-color: rgba(5, 5, 5, 0.8); /* Fond sombre */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Ombre */
+  text-align: center;
+  animation: lightAnimation 2s infinite alternate; /* Animation de lumière */
+  transition: opacity 0.5s; /* Transition d'opacité */
+  opacity: 1; /* Opacité par défaut */
 }
+
+.redWarriors > .redCardTitle   {
+  color: rgb(201, 2, 2);
+  font-size: 1.5rem;
+  margin: 10px;
+  height: 20%;
+
+}
+
+.redWarriors > img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.redWarriors .redButtons 
+{
+  height: 70%;
+  width: 0%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.redWarriors .redButtons  img
+{
+  width: 70px;
+  height: 70px;
+}
+
+.redNainContainer , .redChefNainContainer, .redElfeContainer, .redChefElfContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
 
 
 /* 
