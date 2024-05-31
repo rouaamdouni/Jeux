@@ -401,16 +401,19 @@ Css of the warriors generated in the javascript
 }
 
 .nainDiv {
-  padding: 10px;
+  padding: 7px;
   background-color: rgb(149, 174, 252);
   border: solid black 2px;
   border-radius: 5px;
   display: flex;
   color: black;
-  font-size: 11px;
+  font-size: 9px;
   font-weight: bold;
   width: fit-content;
   height: fit-content;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 .redWarrior{
   background-color: rgb(247, 124, 124);
@@ -434,6 +437,9 @@ Css of the warriors generated in the javascript
   font-weight: bold;
   width: fit-content;
   height: fit-content;
+  align-items: center;
+  justify-content: center;
+  position: relative;
   
 }
 
@@ -448,6 +454,9 @@ Css of the warriors generated in the javascript
   width: fit-content;
   height: fit-content;
   position: relative;
+  align-items: center;
+  justify-content: center;
+  position: relative;
  
 }
 
@@ -461,6 +470,9 @@ Css of the warriors generated in the javascript
   font-weight: bold;
   width: fit-content;
   height: fit-content;
+  position: relative;
+  align-items: center;
+  justify-content: center;
   position: relative;
  
 }
@@ -548,4 +560,102 @@ Css of disabled buttons
   font-weight: bold;
   width: fit-content;
   height: fit-content;
+}
+
+.hp{
+  padding: 4px;
+  background-color: rgb(255, 0, 0);
+  border: solid black 2px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  font-size: 9px;
+  font-weight: bold;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: -150%;
+  right: -10%;
+}
+
+.popup {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 9999; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+
+
+
+.popup-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%; /* Could be more or less, depending on screen size */
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.resultPopup-content {
+
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+
+}
+
+.resultPopup-content  #winnerImage {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-right: 10px;
+
+}
+
+.resultPopup-content > .popupHead {
+  display: flex;
+  width: 90%;
+  height: 10%;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  font-size: 1.2rem;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+
+
+.close {
+  order: 2;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

@@ -9,6 +9,30 @@ export class Game {
     this.setupGameControls();
     this.renderBoard();
   }
+  showGameResultPopup(result) {
+    const winnerImage = document.getElementById("winnerImage");
+    const popup = document.getElementById("gameResultPopup");
+    const span = document.getElementById("closeGameResult");
+    const resultDisplay = document.getElementById("gameResult");
+
+    resultDisplay.innerHTML = result;
+    result === "Blue team wins!" ? winnerImage.src = "./images/blueWarriors.png" : winnerImage.src = "./images/redWarriors.png"
+    
+
+    popup.style.display = "block";
+
+    // When the user clicks on <span> (x), close the popup
+    span.onclick = function () {
+      popup.style.display = "none";
+    };
+
+    // When the user clicks anywhere outside of the popup, close it
+    window.onclick = function (event) {
+      if (event.target == popup) {
+        popup.style.display = "none";
+      }
+    };
+  }
 
   setupGameControls() {
     document
@@ -27,29 +51,34 @@ export class Game {
   startTour() {
     this.tourStarted = true; // Set tourStarted flag to true
     this.startAutomaticTour();
-    // Check for victory conditions
-    // this.checkVictory();
   }
 
   async startAutomaticTour() {
-    if (this.tourStarted) {
+    while (this.tourStarted) {
       // Move blue warriors first with a delay
-      this.moveWarriors("blue");
+      await this.moveWarriors("blue");
+      this.renderBoard();
 
-      // Move red warriors after a delay of 0.5 seconds
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      // Move red warriors after a delay
       await this.moveWarriors("red");
-
-      // Render the board after both movements
-      this.checkVictory();
       this.renderBoard();
 
       // Check for victory conditions
+      if (this.checkVictory()) {
+        this.tourStarted = false;
+        break;
+      }
+
+      // Pause the tour after a fight to let users train new players
+      if (this.checkCollision()) {
+        this.tourStarted = false;
+        break;
+      }
     }
   }
 
   async moveWarriors(color) {
-    const moveInterval = 1000; // 1 second delay
+    const moveInterval = 500; // 1 second delay
 
     if (!this.tourStarted) return;
 
@@ -85,20 +114,15 @@ export class Game {
       );
     }
 
-    // Detect collisions after moving
-    this.detectCollision();
-    this.checkVictory();
+    this.renderBoard();
+    await new Promise((resolve) => setTimeout(resolve, moveInterval));
 
-    // Render the board after moving
+    // Detect collisions after moving
+    await this.detectCollision();
     this.renderBoard();
 
     // Wait for the next move interval
     await new Promise((resolve) => setTimeout(resolve, moveInterval));
-
-    // If there are no collisions and tour is still ongoing, continue moving
-    if (!this.checkCollision() && this.tourStarted) {
-      await this.moveWarriors(color);
-    }
   }
 
   checkCollision() {
@@ -110,16 +134,18 @@ export class Game {
     });
     return collisionDetected;
   }
-  detectCollision() {
-    this.board.forEach((tile, index) => {
+
+  async detectCollision() {
+    for (let index = 0; index < this.board.length; index++) {
+      const tile = this.board[index];
       if (tile.blue.length > 0 && tile.red.length > 0) {
-        this.battleWarriors(tile, index);
+        await this.battleWarriors(tile, index);
+        this.renderBoard();
       }
-    });
+    }
   }
 
-  // ------------------- the working one ----------------------------
-  battleWarriors(tile, index) {
+  async battleWarriors(tile, index) {
     console.log("---------Fighting Started----------");
 
     while (tile.blue.length > 0 && tile.red.length > 0) {
@@ -137,11 +163,13 @@ export class Game {
           }`
         );
 
+        this.renderBoard();
+
         if (tile.red[0].healthPoints <= 0) {
           console.log(`${tile.red[0].name} is dead.`);
           tile.red.shift();
         }
-        // this.checkVictory();
+        await new Promise((resolve) => setTimeout(resolve, 500)); // Delay between attacks
       }
 
       // Red will attack second; each red warrior will attack each blue warrior
@@ -156,82 +184,20 @@ export class Game {
           } for ${redDamage} damage. | ${tile.blue[0].healthPoints}`
         );
 
+        this.renderBoard();
+
         if (tile.blue[0].healthPoints <= 0) {
           console.log(`${tile.blue[0].name} is dead.`);
           tile.blue.shift();
         }
-        // this.checkVictory();
+        await new Promise((resolve) => setTimeout(resolve, 500)); // Delay between attacks
       }
     }
 
-    this.tourStarted = false; // Set tourStarted flag to false after fighting ends
-    this.updateResources();
     console.log("---------Fighting Ended----------");
+    this.updateResources();
+    this.tourStarted = false;
   }
-
-  // ---------------------------------------------------------------
-  // --------------------- The testing of the damage calculation one -----------
-
-  // battleWarriors(tile, index) {
-  //   console.log("---------Fighting Started----------");
-
-  //   let blueDamageAccumulator = 0;
-  //   let redDamageAccumulator = 0;
-
-  //   while (tile.blue.length > 0 && tile.red.length > 0) {
-  //     // Blue will attack first; each blue warrior will attack each red warrior
-  //     for (let i = 0; i < tile.blue.length && tile.red.length > 0; i++) {
-  //       const blueWarrior = tile.blue[i];
-  //       const newblueDamage = blueWarrior.attack();
-  //       const blueDamage = newblueDamage + blueDamageAccumulator;
-  //       console.log();
-  //       blueDamageAccumulator = 0; // Reset the accumulator
-  //       tile.red[0].takeDamage(blueDamage);
-
-  //       console.log(
-  //         ` Tile ${index + 1}: Blue ${blueWarrior.name} | ${
-  //           blueWarrior.healthPoints
-  //         } attacks Red ${
-  //           tile.red[0].name
-  //         } for the random${newblueDamage} ,finaldamage ${blueDamage}. | ${
-  //           tile.red[0].healthPoints
-  //         }`
-  //       );
-
-  //       if (tile.red[0].healthPoints <= 0) {
-  //         console.log(`${tile.red[0].name} is dead.`);
-  //         tile.red.shift();
-  //         blueDamageAccumulator = -tile.red[0].healthPoints;
-  //       }
-  //       this.checkVictory();
-  //     }
-
-  //     // Red will attack second; each red warrior will attack each blue warrior
-  //     for (let i = 0; i < tile.red.length && tile.blue.length > 0; i++) {
-  //       const redWarrior = tile.red[i];
-  //       const redDamage = redWarrior.attack() + redDamageAccumulator;
-  //       redDamageAccumulator = 0; // Reset the accumulator
-  //       tile.blue[0].takeDamage(redDamage);
-
-  //       console.log(
-  //         `Tile ${index + 1}: Red ${redWarrior.name} attacks Blue ${
-  //           tile.blue[0].name
-  //         } for ${redDamage} damage. | ${tile.blue[0].healthPoints}`
-  //       );
-
-  //       if (tile.blue[0].healthPoints <= 0) {
-  //         console.log(`${tile.blue[0].name} is dead.`);
-  //         tile.blue.shift();
-  //         blueDamageAccumulator = -tile.red[0].healthPoints;
-  //       }
-  //       this.checkVictory();
-  //     }
-  //   }
-
-  //   this.tourStarted = false; // Set tourStarted flag to false after fighting ends
-  //   this.updateResources();
-  //   console.log("---------Fighting Ended----------");
-  // }
 
   updateResources() {
     this.blueCastle.trainingArea.innerHTML = "";
@@ -269,7 +235,7 @@ export class Game {
               .split(" ")[0]
               .toLowerCase()}.png" alt="warrior img">
 
-            <div class="hp">HP: ${w.healthPoints}</div></div>`
+            <div class="hp">${w.healthPoints}</div></div>`
         )
         .join("");
       const redWarriors = tile.red
@@ -282,7 +248,7 @@ export class Game {
               .split(" ")[0]
               .toLowerCase()}.png" alt="warrior img">
 
-            <div class="hp">HP: ${w.healthPoints}</div></div>`
+            <div class="hp">${w.healthPoints}</div></div>`
         )
         .join("");
       tileElement.innerHTML = `
@@ -294,45 +260,56 @@ export class Game {
   }
 
   checkVictory() {
-    let winnerPopUp = document.createElement("div");
+    // let winnerPopUp = document.createElement("div");
+    // const resultOfTheGame = document.getElementById("resultOfTheGame");
 
     // Check if the last tile (index 4) has blue warriors
     if (this.board[4].blue.length > 0) {
-      console.log(this.board[0].blue, this.board[0].blue.length);
-
-      // this.renderBoard();
       setTimeout(() => {
-        winnerPopUp.innerHTML = `<div class="winnerPopup">
-      <div class="winnerPopupContent">
-        <h1>Blue team wins!</h1>
-        <button class="resetGame">Play Again</button>
-      </div>
-    </div>`;
-        document.querySelector(".gameControls").appendChild(winnerPopUp);
-        document.querySelector(".resetGame").addEventListener("click", () => {
-          winnerPopUp.remove();
-        });
-
-        this.resetGame();
-      }, 2000); // Delay the alert by 1 second to allow time for UI update
+        if (!document.querySelector(".winnerPopup")) {
+          this.showGameResultPopup("Blue team wins!");
+          //     winnerPopUp.innerHTML = `<div class="winnerPopup">
+          //   <div class="winnerPopupContent">
+          //     <h1
+          //       style="
+          //         color: blue;
+          //       "
+          //     >Blue team wins!</h1>
+          //     <button class="resetGame">Play Again</button>
+          //   </div>
+          // </div>`;
+          //     document.querySelector(".gameControls").appendChild(winnerPopUp);
+          //     document.querySelector(".resetGame").addEventListener("click", () => {
+          //       winnerPopUp.remove();
+          //       this.resetGame();
+          //     });
+        }
+      }, 1000); // Delay the alert by 2 seconds to allow time for UI update
+      return true;
     }
-    // Check if the last tile (index 4) has red warriors
+    // Check if the first tile (index 0) has red warriors
     else if (this.board[0].red.length > 0) {
       setTimeout(() => {
-        winnerPopUp.innerHTML = `<div class="winnerPopup">
-      <div class="winnerPopupContent">
-        <h1>Red team wins!</h1>
-        <button class="resetGame">Play Again</button>
-      </div>
-    </div>`;
-        document.querySelector(".gameControls").appendChild(winnerPopUp);
-        document.querySelector(".resetGame").addEventListener("click", () => {
-          winnerPopUp.remove();
-        });
+        if (!document.querySelector(".winnerPopup")) {
+          this.showGameResultPopup("Red team wins!");
+      //     winnerPopUp.innerHTML = `<div class="winnerPopup">
+      //   <div class="winnerPopupContent">
+      //     <h1 style=' color: red;'
 
-        this.resetGame();
-      }, 2000); // Delay the alert by 1 second to allow time for UI update
+      //     >Red team wins!</h1>
+      //     <button class="resetGame">Play Again</button>
+      //   </div>
+      // </div>`;
+      //     document.querySelector(".gameControls").appendChild(winnerPopUp);
+      //     document.querySelector(".resetGame").addEventListener("click", () => {
+      //       winnerPopUp.remove();
+      //       this.resetGame();
+      //     });
+        }
+      }, 1000); // Delay the alert by 2 seconds to allow time for UI update
+      return true;
     }
+    return false;
   }
 
   resetGame() {

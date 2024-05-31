@@ -11,6 +11,13 @@
 <script type="module" src="app.js" defer></script>
 
 <body>
+    <audio
+    id="start-sound"
+    src="audio/startSound.m4a"
+    preload="auto"
+    autoplay
+    loop
+    ></audio>
     <div class="game">
         <h1>
             Welcome To Faerun Game
@@ -22,12 +29,6 @@
             <div class="castleTrainings">
 
                 <div class="castle2Data ">
-                   
-                    <!-- <h4 >
-                    Trained Warriors
-                    </h4> -->
-
-                    
                     <div class="blueWarriors" style="display: none;">
                         <h4 class="blueCardTitle">Train Blue Warriors</h4>
 
@@ -44,13 +45,13 @@
                             </div>
                             <div class="blueChefNainContainer">
                                 <img src="images/blue/blue-chefNain.png" alt="blue Chef Naine">
-                                <p>COST : 2</p>
+                                <p>COST : 3</p>
                                 <button class="btn-dedcoration blue-ChefNain">Chef Nain  </button>
                             </div>
                            
                             <div class="blueElfeContainer">
                                 <img src="images/blue/blue-elfe.png" alt="Blue Elffe">
-                                <p>COST : 3</p>
+                                <p>COST : 2</p>
                                 <button class="btn-dedcoration blue-Elfe">Elfe </button>
                             </div>
                             <div class="blueChefElfContainer">
@@ -81,11 +82,7 @@
                 </div>
 
                 <div class="castle1Data ">
-<!-- 
-                    <h4>
-                        Trained Warriors
-                    </h4> -->
-                    
+
                     <div class="redWarriors" style="display: none;">
                         <h4 class="redCardTitle">Train Red Warriors</h4>
                         <img src="images/redWarriors.png" alt="">
@@ -101,12 +98,12 @@
                             </div>
                             <div class="redChefNainContainer">
                                 <img src="images/red/red-chefNain.png" alt="red Chef Naine">
-                                <p>COST : 2</p>
+                                <p>COST : 3</p>
                                 <button class="btn-dedcoration red-ChefNain">Chef Nain  </button>
                             </div>
                             <div class="redElfeContainer">
                                 <img src="images/red/red-elfe.png" alt="red Elffe">
-                                <p>COST : 3</p>
+                                <p>COST : 2</p>
                                 <button class="btn-dedcoration red-Elfe">Elfe </button>
                             </div>
                             <div class="redChefElfContainer">
@@ -137,7 +134,25 @@
                     <div class="fightingBox5 fightingBox"></div>
                 </div>    
 
+                <div id="resourcePopup" class="popup">
+                    <div class="popup-content">
+                      <span class="close">&times;</span>
+                      <p>Not enough resources!</p>
+                    </div>
+                  </div>
 
+            <div id="gameResultPopup" class="popup">
+                <div class="resultPopup-content">
+                    <div class="popupHead">
+                        <h2>Game Result</h2>
+                        <span id="closeGameResult">&times;</span>
+                    </div>
+                    <img src="" alt="Picture of the Winner" id="winnerImage">
+                    
+                    <h3 id="gameResult"></h3>
+                </div>
+                
+            </div>
 
         </div>
 </body>
