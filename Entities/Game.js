@@ -27,9 +27,8 @@ export class Game {
   startTour() {
     this.tourStarted = true; // Set tourStarted flag to true
     this.startAutomaticTour();
-
     // Check for victory conditions
-    this.checkVictory();
+    // this.checkVictory();
   }
 
   async startAutomaticTour() {
@@ -42,10 +41,10 @@ export class Game {
       await this.moveWarriors("red");
 
       // Render the board after both movements
+      this.checkVictory();
       this.renderBoard();
 
       // Check for victory conditions
-      this.checkVictory();
     }
   }
 
@@ -88,6 +87,7 @@ export class Game {
 
     // Detect collisions after moving
     this.detectCollision();
+    this.checkVictory();
 
     // Render the board after moving
     this.renderBoard();
@@ -100,6 +100,7 @@ export class Game {
       await this.moveWarriors(color);
     }
   }
+
   checkCollision() {
     let collisionDetected = false;
     this.board.forEach((tile) => {
@@ -139,7 +140,7 @@ export class Game {
           console.log(`${tile.red[0].name} is dead.`);
           tile.red.shift();
         }
-        this.checkVictory();
+        // this.checkVictory();
       }
 
       // Red will attack second; each red warrior will attack each blue warrior
@@ -158,7 +159,7 @@ export class Game {
           console.log(`${tile.blue[0].name} is dead.`);
           tile.blue.shift();
         }
-        this.checkVictory();
+        // this.checkVictory();
       }
     }
 
@@ -239,6 +240,17 @@ export class Game {
   }
 
   renderBoard() {
+    console.log(
+      `
+      
+      case 1 -Blue : ${this.board[0].blue.length}| Red : ${this.board[0].red.length}
+      case 2 -Blue :${this.board[1].blue.length} | Red :${this.board[1].red.length}
+      case 3 -Blue :${this.board[2].blue.length} | Red :${this.board[2].red.length}
+      case 4 -Blue :${this.board[3].blue.length} | Red :${this.board[3].red.length}
+      case 5 -Blue :${this.board[4].blue.length} | Red :${this.board[4].red.length}
+      
+      `
+    );
     const boardElement = document.querySelector(".fightingBoxes");
     boardElement.innerHTML = "";
     this.board.forEach((tile, index) => {
@@ -287,11 +299,11 @@ export class Game {
       console.log(this.board[2].blue, this.board[2].blue.length);
       console.log(this.board[3].blue, this.board[3].blue.length);
       console.log(this.board[4].blue, this.board[4].blue.length);
-      this.renderBoard();
+      // this.renderBoard();
       setTimeout(() => {
         alert("Blue team wins!");
-        this.resetGame();
       }, 1000); // Delay the alert by 1 second to allow time for UI update
+      this.resetGame();
     }
     // Check if the last tile (index 4) has red warriors
     else if (this.board[0].red.length > 0) {
@@ -300,15 +312,16 @@ export class Game {
       console.log(this.board[2].red, this.board[2].red.length);
       console.log(this.board[3].red, this.board[3].red.length);
       console.log(this.board[4].red, this.board[4].red.length);
-      this.renderBoard();
+      // this.renderBoard();
       setTimeout(() => {
         alert("Red team wins!");
-        this.resetGame();
       }, 1000); // Delay the alert by 1 second to allow time for UI update
+      this.resetGame();
     }
   }
 
   resetGame() {
+    this.tourStarted = false;
     this.board = Array.from({ length: 5 }, () => ({ blue: [], red: [] }));
     this.blueCastle.resources = 3;
     this.redCastle.resources = 3;
