@@ -29,9 +29,6 @@ export class Castle {
     }
 
     trainWarrior(type) {
-
-
-
         const warriorCost = { Nain: 1, ChefNain: 3, Elfe: 2, ChefElfe: 4 };
         if (this.resources >= warriorCost[type]) {
             let warrior;
@@ -72,5 +69,7 @@ export class Castle {
             <p>Health: ${warrior.healthPoints} HP</p>`;
         this.trainingArea.appendChild(warriorDiv);
     }
+
+    
 }
 

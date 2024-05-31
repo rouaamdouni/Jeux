@@ -118,6 +118,7 @@ export class Game {
     });
   }
 
+  // ------------------- the working one ----------------------------
   battleWarriors(tile, index) {
     console.log("---------Fighting Started----------");
 
@@ -167,6 +168,9 @@ export class Game {
     this.updateResources();
     console.log("---------Fighting Ended----------");
   }
+
+  // ---------------------------------------------------------------
+  // --------------------- The testing of the damage calculation one -----------
 
   // battleWarriors(tile, index) {
   //   console.log("---------Fighting Started----------");
@@ -290,33 +294,44 @@ export class Game {
   }
 
   checkVictory() {
-    // console.log("Checking for victory");
+    let winnerPopUp = document.createElement("div");
 
     // Check if the last tile (index 4) has blue warriors
     if (this.board[4].blue.length > 0) {
       console.log(this.board[0].blue, this.board[0].blue.length);
-      console.log(this.board[1].blue, this.board[1].blue.length);
-      console.log(this.board[2].blue, this.board[2].blue.length);
-      console.log(this.board[3].blue, this.board[3].blue.length);
-      console.log(this.board[4].blue, this.board[4].blue.length);
+
       // this.renderBoard();
       setTimeout(() => {
-        alert("Blue team wins!");
-      }, 1000); // Delay the alert by 1 second to allow time for UI update
-      this.resetGame();
+        winnerPopUp.innerHTML = `<div class="winnerPopup">
+      <div class="winnerPopupContent">
+        <h1>Blue team wins!</h1>
+        <button class="resetGame">Play Again</button>
+      </div>
+    </div>`;
+        document.querySelector(".gameControls").appendChild(winnerPopUp);
+        document.querySelector(".resetGame").addEventListener("click", () => {
+          winnerPopUp.remove();
+        });
+
+        this.resetGame();
+      }, 2000); // Delay the alert by 1 second to allow time for UI update
     }
     // Check if the last tile (index 4) has red warriors
     else if (this.board[0].red.length > 0) {
-      console.log(this.board[0].red, this.board[0].red.length);
-      console.log(this.board[1].red, this.board[1].red.length);
-      console.log(this.board[2].red, this.board[2].red.length);
-      console.log(this.board[3].red, this.board[3].red.length);
-      console.log(this.board[4].red, this.board[4].red.length);
-      // this.renderBoard();
       setTimeout(() => {
-        alert("Red team wins!");
-      }, 1000); // Delay the alert by 1 second to allow time for UI update
-      this.resetGame();
+        winnerPopUp.innerHTML = `<div class="winnerPopup">
+      <div class="winnerPopupContent">
+        <h1>Red team wins!</h1>
+        <button class="resetGame">Play Again</button>
+      </div>
+    </div>`;
+        document.querySelector(".gameControls").appendChild(winnerPopUp);
+        document.querySelector(".resetGame").addEventListener("click", () => {
+          winnerPopUp.remove();
+        });
+
+        this.resetGame();
+      }, 2000); // Delay the alert by 1 second to allow time for UI update
     }
   }
 

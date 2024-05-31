@@ -22,18 +22,45 @@
             <div class="castleTrainings">
 
                 <div class="castle2Data ">
-                    <h4 class="blueRessources">
-                        Ressources :
-                    </h4>
+                   
                     <h4 >
                     Trained Warriors :
                     </h4>
-                    <div class="blueWarriors">
-                        <h4>Train Blue Warriors</h4>
-                        <button class="btn-dedcoration blue-Nain ">Nain (1 pt)</button>
-                        <button class="btn-dedcoration blue-ChefNain">Chef Nain (3 pts) </button>
-                        <button class="btn-dedcoration blue-Elfe">Elfe (2 pts)</button>
-                        <button class="btn-dedcoration blue-ChefElfe">Chef Elfe(4 pts)</button>
+
+                    <button id="trainBlueWarriors">
+                        Train Blue Warriors
+                    </button>
+                    <div class="blueWarriors" style="display: none;">
+                        <h4 class="blueCardTitle">Train Blue Warriors</h4>
+
+                        <img src="images/blueWarriors.png" alt="">
+
+                        <h4 class="blueRessources">
+                            Ressources :
+                        </h4>
+                        <div class="blueButtons">
+                            <div class="blueNainContainer">
+                                <img src="images/blue/blue-nain.png" alt="blue Naine">
+                                <p>COST : 1</p>
+                                <button class="btn-dedcoration blue-Nain ">Nain </button>
+                            </div>
+                            <div class="blueChefNainContainer">
+                                <img src="images/blue/blue-chefNain.png" alt="blue Chef Naine">
+                                <p>COST : 2</p>
+                                <button class="btn-dedcoration blue-ChefNain">Chef Nain  </button>
+                            </div>
+                           
+                            <div class="blueElfeContainer">
+                                <img src="images/blue/blue-elfe.png" alt="Blue Elffe">
+                                <p>COST : 3</p>
+                                <button class="btn-dedcoration blue-Elfe">Elfe </button>
+                            </div>
+                            <div class="blueChefElfContainer">
+                                <img src="images/blue/blue-chefElfe.png" alt="Blue Chef Elffe">
+                                <p>COST : 4</p>
+                                <button class="btn-dedcoration blue-ChefElfe">Chef Elfe</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="blueTrainingPhase"></div>
                 </div>
@@ -44,11 +71,11 @@
                     <div>
                         <h2>Game Result</h2>
                     </div>
-                    <button class="btn-dedcoration startGame">
-                        Start Game
-                    </button>
                     <button class="btn-dedcoration startTour " >
                         Start a new tour
+                    </button>
+                    <button class="btn-dedcoration startGame">
+                        Reset Game
                     </button>
                 </div>
 
@@ -56,12 +83,15 @@
                     <h4 class="redRessources">
                         Ressources :
                     </h4>
+                    <button id="trainRedWarriors">
+                        Train Red Warriors
+                    </button>
                     <h4>
                         Trained Warriors :
                     </h4>
                     <div class="redWarriors">
                         <h4>Train Red Warriors</h4>
-                        <button class="btn-dedcoration red-Nain">Nain (1 pt)</button>
+                            <button class="btn-dedcoration red-Nain">Nain (1 pt)</button>
                         <button class="btn-dedcoration red-ChefNain">Chef Nain (3 pts) </button>
                         <button class="btn-dedcoration red-Elfe">Elfe (2 pts)</button>
                         <button class="btn-dedcoration red-ChefElfe">Chef Elfe(4 pts)</button>
