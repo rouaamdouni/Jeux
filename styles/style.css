@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 * {
   margin: 0;
@@ -19,7 +18,6 @@ body .game {
   background-image: url(/images/background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
- 
 }
 
 .game {
@@ -35,24 +33,21 @@ body .game {
 }
 
 .gameContainer {
- /* background-color: white; */
- /* blur background */
+  /* background-color: white; */
+  /* blur background */
   background-color: rgba(90, 90, 90, 0.5);
   backdrop-filter: blur(1px);
   border-radius: 20px;
-  
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 80%;
-  padding: 20px; 
+  padding: 20px;
   border-radius: 20px;
 }
-
-
-
 
 .fightingBoxes {
   height: 40%;
@@ -83,9 +78,7 @@ body .game {
   padding-top: 7px;
   padding: 20px;
   background-color: rgb(121, 121, 121);
-
 }
-
 
 .fightingBoxes .fightingBox:hover {
   cursor: pointer;
@@ -93,12 +86,10 @@ body .game {
 }
 
 .castleTrainings {
-
   width: 100%;
   height: 60%;
   display: flex;
 }
-
 
 .castleTrainings .castle1Data {
   background-image: url(/images/redCastle.jpg);
@@ -113,7 +104,6 @@ body .game {
   flex-direction: column;
   justify-content: center;
   align-items: center;
- 
 }
 
 .castleTrainings .castle2Data {
@@ -144,7 +134,7 @@ body .game {
   text-align: center;
 }
 
-.castle1Data  #trainRedWarriors {
+.castle1Data #trainRedWarriors {
   /* this is the button to open popup of traing */
   background-color: black;
   font-family: "Press Start 2P", system-ui;
@@ -162,9 +152,9 @@ body .game {
   border-radius: 5px;
 }
 
-.castle2Data  #trainBlueWarriors {
+.castle2Data #trainBlueWarriors {
   /* this is the button to open popup of traing */
-  background-color:  black;
+  background-color: black;
   font-family: "Press Start 2P", system-ui;
   color: white;
   width: 320px;
@@ -177,28 +167,21 @@ body .game {
   font-size: 12px;
   margin: 4px 2px;
   cursor: pointer;
-  
+
   border-radius: 5px;
 }
 
-.castle1Data  #trainRedWarriors:hover {
+.castle1Data #trainRedWarriors:hover {
   background-color: white;
   color: black;
 }
 
-.castle2Data  #trainBlueWarriors:hover {
+.castle2Data #trainBlueWarriors:hover {
   background-color: white;
   color: black;
 }
-
-
-
-
-
-
 
 .castleTrainings .gameControls {
-
   color: black;
   width: 60%;
   display: flex;
@@ -229,11 +212,10 @@ body .game {
   color: white;
 }
 
-
 .blueWarriors {
   /* the back of the card is blur */
   backdrop-filter: blur(2px);
-  color : white;
+  color: white;
   z-index: 20;
   position: absolute;
   top: 10%;
@@ -257,15 +239,13 @@ body .game {
   animation: lightAnimation 2s infinite alternate; /* Animation de lumière */
   transition: opacity 0.5s; /* Transition d'opacité */
   opacity: 1; /* Opacité par défaut */
-
 }
 
-.blueWarriors > .blueCardTitle   {
+.blueWarriors > .blueCardTitle {
   color: rgb(2, 65, 201);
   font-size: 1.5rem;
   margin: 10px;
   height: 20%;
-
 }
 
 .blueWarriors > img {
@@ -275,8 +255,7 @@ body .game {
   margin-right: 10px;
 }
 
-.blueWarriors .blueButtons 
-{
+.blueWarriors .blueButtons {
   height: 70%;
   width: 0%;
   display: grid;
@@ -286,28 +265,29 @@ body .game {
   align-items: center;
 }
 
-.blueWarriors .blueButtons  img
-{
+.blueWarriors .blueButtons img {
   width: 70px;
   height: 70px;
 }
 
-.blueNainContainer , .blueChefNainContainer, .blueElfeContainer, .blueChefElfContainer {
+.blueNainContainer,
+.blueChefNainContainer,
+.blueElfeContainer,
+.blueChefElfContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
 .redWarriors {
   /* the back of the card is blur */
   backdrop-filter: blur(2px);
-  color : white;
+  color: white;
   z-index: 20;
   position: absolute;
   top: 20%;
-  right:95%;
+  right: 95%;
   padding: 10px;
   border: solid black 2px;
   width: 700px;
@@ -327,25 +307,22 @@ body .game {
   animation: lightAnimation 2s infinite alternate; /* Animation de lumière */
   transition: opacity 0.5s; /* Transition d'opacité */
   opacity: 1; /* Opacité par défaut */
+  display: none;
 }
 
-.redWarriors > .redCardTitle   {
+.redWarriors > .redCardTitle {
   color: rgb(201, 2, 2);
   font-size: 1.5rem;
   margin: 10px;
   height: 20%;
-
 }
 
 .redWarriors > img {
   width: 200px;
   height: 200px;
-  
-
 }
 
-.redWarriors .redButtons 
-{
+.redWarriors .redButtons {
   height: 70%;
   width: 0%;
   display: grid;
@@ -355,38 +332,34 @@ body .game {
   align-items: center;
 }
 
-.redWarriors .redButtons  img
-{
+.redWarriors .redButtons img {
   width: 70px;
   height: 70px;
 }
 
-.redNainContainer , .redChefNainContainer, .redElfeContainer, .redChefElfContainer {
+.redNainContainer,
+.redChefNainContainer,
+.redElfeContainer,
+.redChefElfContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
-
-
-
 
 /* 
 ----------------------------------------------
 Css of the warriors generated in the javascript 
 ----------------------------------------------
 */
-.warriors{
-  width: 100% ;
+.warriors {
+  width: 100%;
   display: flex;
   flex-direction: row;
   gap: 10px;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-
-
 }
 
 /* .nainDiv img , .chefnainDiv img, .elfeDiv img, .chefelfeDiv img{
@@ -415,7 +388,7 @@ Css of the warriors generated in the javascript
   justify-content: center;
   position: relative;
 }
-.redWarrior{
+.redWarrior {
   background-color: rgb(247, 124, 124);
   display: flex;
   position: relative;
@@ -430,7 +403,7 @@ Css of the warriors generated in the javascript
   right: -10px;
 }
 
-.blueWarrior{
+.blueWarrior {
   background-color: rgb(57, 57, 175);
   display: flex;
   position: relative;
@@ -446,7 +419,6 @@ Css of the warriors generated in the javascript
   right: -8px;
 }
 
-
 .chefnainDiv {
   padding: 10px;
   /* background-color: rgb(83, 114, 206); */
@@ -460,7 +432,6 @@ Css of the warriors generated in the javascript
   align-items: center;
   justify-content: center;
   position: relative;
-  
 }
 
 .elfeDiv {
@@ -477,7 +448,6 @@ Css of the warriors generated in the javascript
   align-items: center;
   justify-content: center;
   position: relative;
- 
 }
 
 .chefelfeDiv {
@@ -494,10 +464,7 @@ Css of the warriors generated in the javascript
   align-items: center;
   justify-content: center;
   position: relative;
- 
 }
-
-
 
 /* 
 ----------------------------------------------
@@ -521,13 +488,13 @@ Css of disabled buttons
 /* Traing Phase container */
 
 .redTrainingPhase {
-  margin:  10px 3px;
+  margin: 10px 3px;
   width: 60%;
   height: 80%;
 }
 
 .blueTrainingPhase {
-  margin:  10px 3px;
+  margin: 10px 3px;
   width: 60%;
   height: 80%;
 }
@@ -548,11 +515,10 @@ Css of disabled buttons
   cursor: pointer;
   border-radius: 5px;
 }
-.startTour:hover{
+.startTour:hover {
   background-color: black;
   color: white;
 }
-
 
 .cellDiv {
   padding: 10px;
@@ -584,7 +550,7 @@ Css of disabled buttons
   height: fit-content;
 }
 
-.hp{
+.hp {
   padding: 4px;
   background-color: rgb(255, 0, 0);
   border: solid black 2px;
@@ -610,13 +576,13 @@ Css of disabled buttons
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fefefe;
+  cursor: pointer;
 }
 
-
-
-
 .popup-content {
+  color: #fefefe;
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
@@ -630,28 +596,31 @@ Css of disabled buttons
 }
 
 .resultPopup-content {
-
-  background-color: #fefefe;
- /* 15% from the top and centered */
+  background-color: rgba(5, 5, 5, 0.7);
+  /* 15% from the top and centered */
   margin: 5% auto;
-  padding: 20px;
+  padding: 30px;
   border: 1px solid #888;
-  width: 50%; /* Could be more or less, depending on screen size */
+  width: 30%; /* Could be more or less, depending on screen size */
   height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 60px;
-
+  color: #fefefe;
+  gap: 20px;
 }
 
-.resultPopup-content  #winnerImage {
+.resultPopup-content #winnerImage {
   width: 200px;
   height: 200px;
   border-radius: 50%;
   margin-right: 10px;
+}
 
+.resultPopup-content h3 {
+  margin: 0px;
+  padding: 0px;
 }
 
 .resultPopup-content > .popupHead {
@@ -660,13 +629,35 @@ Css of disabled buttons
   height: 10%;
   justify-content: space-between;
   align-items: center;
-  color: black;
+  color: #fefefe;
   font-size: 1.2rem;
-  margin: 10px;
+  margin-top: 10px;
+
   border-radius: 5px;
 }
+.popupHead h2 {
+  font-size: 1.5rem;
+  text-align: center;
+}
 
-
+.popup #gameResult {
+  margin: 0;
+  padding: 0;
+}
+.popup > .btn-dedcoration {
+  background-color: rgb(255, 255, 255);
+  color: black;
+  width: 120px;
+  border: solid black 1 px;
+  padding: 6px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 11px;
+  /* margin: 4px 2px; */
+  cursor: pointer;
+  border-radius: 5px;
+}
 
 .close {
   order: 2;
@@ -674,41 +665,40 @@ Css of disabled buttons
   float: right;
   font-size: 28px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .close:hover,
 .close:focus {
   color: black;
   text-decoration: none;
-  cursor: pointer;
+  cursor: pointer;
 }
-
 
 .character {
   width: 70px;
   height: 90px;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 #characterSpriteSheet {
   width: 190px;
   height: 90px;
   animation: moveSpriteSheet 1s steps(3) infinite;
-  overflow: hidden; 
+  overflow: hidden;
 }
-
 
 @keyframes moveSpriteSheet {
-    
   0% {
-      transform: translate3d(0px, 0,0);
+    transform: translate3d(0px, 0, 0);
   }
   100% {
-      transform: translate3d(-100%, 0,0);
+    transform: translate3d(-100%, 0, 0);
   }
 }
 
-.blueWarrior, .redWarrior {
+.blueWarrior,
+.redWarrior {
   position: relative;
 }
 .fightingBox {
@@ -718,7 +708,6 @@ Css of disabled buttons
   margin: 10px;
   display: inline-block;
   vertical-align: top;
-
 }
 .warriors {
   display: flex;
@@ -774,15 +763,15 @@ Css of disabled buttons
 
 @keyframes fightAnimation {
   0% {
-      transform: translate(100px, 0);
-      opacity: 1;
+    transform: translate(100px, 0);
+    opacity: 1;
   }
   50% {
-      transform: translate(60px, 0);
-      opacity: 0.8;
+    transform: translate(60px, 0);
+    opacity: 0.8;
   }
   100% {
-      transform: translate(-100px, 0);
-      opacity: 1;
+    transform: translate(-100px, 0);
+    opacity: 1;
   }
 }

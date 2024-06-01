@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #000;
+  margin: 0;
+  font-family: "Press Start 2P", cursive;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+.screenContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container1 {
+  background-image: url("images/background.jpg");
+  height: 100vh;
+  background-color: rgba(90, 90, 90, 0.5);
+  backdrop-filter: blur(1px);
+  border-radius: 20px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.contentContainer1 {
+  background-color: rgba(90, 90, 90, 0.5);
+  backdrop-filter: blur(1px);
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 60%;
+  padding: 20px;
+  border-radius: 20px;
+  animation: slideIn 1s ease-out;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3.2rem;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.description ul {
+  list-style: none;
+  padding: 0;
+}
+
+.description ul li {
+  margin: 10px 0;
+}
+
+#startButton {
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #91928e;
+  border: 3px solid #434443;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  font-family: "Press Start 2P", cursive;
+}
+
+#startButton:hover {
+  background-color: #434443;
+  transform: scale(1.1);
+}
+
+.castleSection {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  width: 80%;
+  text-align: center;
+  animation: fadeIn 2s ease-out;
+}
+
+.castleSection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.castleSection img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.warriors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.warrior {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+  text-align: center;
+}
+
+.warrior img {
+  width: 200px;
+  height: 200px;
+  height: auto;
+  object-fit: contain;
+  /* margin-bottom: 10px; */
+}
+
+.warrior h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

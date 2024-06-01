@@ -53,8 +53,6 @@ export class Castle {
     };
   }
 
- 
-
   trainWarrior(type) {
     const warriorCost = { Nain: 1, ChefNain: 3, Elfe: 2, ChefElfe: 4 };
     if (this.resources >= warriorCost[type]) {
@@ -85,6 +83,9 @@ export class Castle {
 
   updateResourceDisplay() {
     this.resourceDisplay.innerHTML = `Resources: ${this.resources}`;
+  }
+  resetWorriosDisplay() {
+    this.trainingArea.innerHTML = "";
   }
 
   displayWarrior(warrior) {

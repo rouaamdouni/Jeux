@@ -17,8 +17,8 @@ export class Game {
 
     resultDisplay.innerHTML = result;
     result === "Blue team wins!"
-      ? (winnerImage.src = "./images/blueWarriors.png")
-      : (winnerImage.src = "./images/redWarriors.png");
+      ? (winnerImage.src = "../images/blueWarriors.png")
+      : (winnerImage.src = "../images/redWarriors.png");
 
     popup.style.display = "block";
 
@@ -227,7 +227,7 @@ export class Game {
 
        
             <div class="character">
-              <img src="images/sprites/blue${w.name
+              <img src="/images/sprites/blue${w.name
                 .split(" ")[0]
                 .toLowerCase()}.png" alt="Blue Elffe"
               width="120px" height="70px" 
@@ -246,7 +246,7 @@ export class Game {
             .toLowerCase()}Div redWarrior" ><div class="name">${w.name}</div>
             
             <div class="character">
-              <img src="images/sprites/red${w.name
+              <img src="/images/sprites/red${w.name
                 .split(" ")[0]
                 .toLowerCase()}.png" alt="Red Elffe"
               width="120px" height="70px"
@@ -308,6 +308,7 @@ export class Game {
           //       this.resetGame();
           //     });
         }
+        this.resetGame();
       }, 1000); // Delay the alert by 2 seconds to allow time for UI update
       return true;
     }
@@ -330,6 +331,7 @@ export class Game {
           //       this.resetGame();
           //     });
         }
+        this.resetGame();
       }, 1000); // Delay the alert by 2 seconds to allow time for UI update
       return true;
     }
@@ -345,6 +347,8 @@ export class Game {
     this.redCastle.queue = [];
     this.blueCastle.updateResourceDisplay();
     this.redCastle.updateResourceDisplay();
+    this.blueCastle.resetWorriosDisplay();
+    this.redCastle.resetWorriosDisplay();
     this.renderBoard();
   }
 }
