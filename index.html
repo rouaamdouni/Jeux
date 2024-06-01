@@ -29,7 +29,7 @@
             <div class="castleTrainings">
 
                 <div class="castle2Data ">
-                    <div class="blueWarriors" style="display: none;">
+                    <div class="blueWarriors" style="display: flex;">
                         <h4 class="blueCardTitle">Train Blue Warriors</h4>
 
                         <img src="images/blueWarriors.png" alt="">
@@ -39,23 +39,44 @@
                         </h4>
                         <div class="blueButtons">
                             <div class="blueNainContainer">
-                                <img src="images/blue/blue-nain.png" alt="blue Naine">
+                                <div class="character">
+                                    <img src="images/sprites/blueNain.png" alt="Blue Naine"
+                                    width="120px" height="70px" 
+                                    id="characterSpriteSheet"
+                                    >
+                                </div>
+
                                 <p>COST : 1</p>
                                 <button class="btn-dedcoration blue-Nain ">Nain </button>
                             </div>
                             <div class="blueChefNainContainer">
-                                <img src="images/blue/blue-chefNain.png" alt="blue Chef Naine">
+                                <div class="character">
+                                    <img src="images/sprites/blueChefNain.png" alt="Blue Chef Naine"
+                                    width="120px" height="70px" 
+                                    id="characterSpriteSheet"
+                                    >
+                                </div>
                                 <p>COST : 3</p>
                                 <button class="btn-dedcoration blue-ChefNain">Chef Nain  </button>
                             </div>
                            
                             <div class="blueElfeContainer">
-                                <img src="images/blue/blue-elfe.png" alt="Blue Elffe">
+                                <div class="character">
+                                    <img src="images/sprites/blueElfe.png" alt="Blue Elffe"
+                                    width="120px" height="70px" 
+                                    id="characterSpriteSheet"
+                                    >
+                                </div>
                                 <p>COST : 2</p>
                                 <button class="btn-dedcoration blue-Elfe">Elfe </button>
                             </div>
                             <div class="blueChefElfContainer">
-                                <img src="images/blue/blue-chefElfe.png" alt="Blue Chef Elffe">
+                                <div class="character">
+                                    <img src="images/sprites/blueChefElfe.png" alt="Blue Chef Elffe"
+                                    width="120px" height="70px" 
+                                    id="characterSpriteSheet"
+                                    >
+                                </div>
                                 <p>COST : 4</p>
                                 <button class="btn-dedcoration blue-ChefElfe">Chef Elfe</button>
                             </div>
@@ -92,22 +113,34 @@
                         <div class="redButtons
                         ">
                             <div class="redNainContainer">
-                                <img src="images/red/red-nain.png" alt="red Naine">
+                           
+                                <div class="character">
+                                    <img src="images/sprites/redNain.png" alt="red Naine" width="120px" height="70px" id="characterSpriteSheet">
+                                </div>
+                                
                                 <p>COST : 1</p>
                                 <button class="btn-dedcoration red-Nain">Nain </button>
                             </div>
                             <div class="redChefNainContainer">
-                                <img src="images/red/red-chefNain.png" alt="red Chef Naine">
+                                <div class="character">
+                                    <img src="images/sprites/redChefNain.png" alt="red Chef Naine" width="120px" height="70px" id="characterSpriteSheet">
+                                </div>
+                              
                                 <p>COST : 3</p>
                                 <button class="btn-dedcoration red-ChefNain">Chef Nain  </button>
                             </div>
                             <div class="redElfeContainer">
-                                <img src="images/red/red-elfe.png" alt="red Elffe">
+                                <div class="character">
+                                    <img src="images/sprites/redElfe.png" alt="red Elffe" width="120px" height="70px" id="characterSpriteSheet">
+                                </div>
+                               
                                 <p>COST : 2</p>
                                 <button class="btn-dedcoration red-Elfe">Elfe </button>
                             </div>
                             <div class="redChefElfContainer">
-                                <img src="images/red/red-chefElfe.png" alt="red Chef Elffe">
+                                <div class="character">
+                                    <img src="images/sprites/redChefElfe.png" alt="red Chef Elffe" width="120px" height="70px" id="characterSpriteSheet">
+                                </div>
                                 <p>COST : 4</p>
                                 <button class="btn-dedcoration red-ChefElfe">Chef Elfe</button>
                             </div>
@@ -150,6 +183,12 @@
                     <img src="" alt="Picture of the Winner" id="winnerImage">
                     
                     <h3 id="gameResult"></h3>
+                    <!-- <button class="btn-dedcoration startTour " id="startNewTour">
+                        Start a new tour
+                    </button> -->
+                    <button class="btn-dedcoration startGame" id="resetGame">
+                        Reset Game
+                    </button>
                 </div>
                 
             </div>

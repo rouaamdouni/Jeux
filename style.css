@@ -340,8 +340,8 @@ body .game {
 .redWarriors > img {
   width: 200px;
   height: 200px;
-  border-radius: 50%;
-  margin-right: 10px;
+  
+
 }
 
 .redWarriors .redButtons 
@@ -389,7 +389,7 @@ Css of the warriors generated in the javascript
 
 }
 
-.nainDiv img , .chefnainDiv img, .elfeDiv img, .chefelfeDiv img{
+/* .nainDiv img , .chefnainDiv img, .elfeDiv img, .chefelfeDiv img{
   width: 70px;
   height: 90px;
   border-radius: 50%;
@@ -398,7 +398,7 @@ Css of the warriors generated in the javascript
   top: -80px;
   right: -10px;
 
-}
+} */
 
 .nainDiv {
   padding: 7px;
@@ -419,11 +419,31 @@ Css of the warriors generated in the javascript
   background-color: rgb(247, 124, 124);
   display: flex;
   position: relative;
+  color: white;
 }
+.redWarrior .character {
+  width: 70px;
+  height: 90px;
+  border-radius: 50%;
+  position: absolute;
+  top: -80px;
+  right: -10px;
+}
+
 .blueWarrior{
-  background-color: rgb(169, 169, 248);
+  background-color: rgb(57, 57, 175);
   display: flex;
   position: relative;
+  color: white;
+}
+
+.blueWarrior .character {
+  width: 70px;
+  height: 90px;
+  border-radius: 50%;
+  position: absolute;
+  top: -80px;
+  right: -8px;
 }
 
 
@@ -448,7 +468,7 @@ Css of the warriors generated in the javascript
   /* background-color: rgb(113, 255, 194); */
   border: solid black 2px;
   border-radius: 5px;
-  color: black;
+  color: white;
   font-size: 11px;
   font-weight: bold;
   width: fit-content;
@@ -476,6 +496,8 @@ Css of the warriors generated in the javascript
   position: relative;
  
 }
+
+
 
 /* 
 ----------------------------------------------
@@ -576,7 +598,7 @@ Css of disabled buttons
   width: fit-content;
   height: fit-content;
   position: absolute;
-  top: -150%;
+  top: -100%;
   right: -10%;
 }
 
@@ -610,11 +632,12 @@ Css of disabled buttons
 .resultPopup-content {
 
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+ /* 15% from the top and centered */
+  margin: 5% auto;
   padding: 20px;
   border: 1px solid #888;
   width: 50%; /* Could be more or less, depending on screen size */
-  height: 50%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -658,4 +681,108 @@ Css of disabled buttons
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+
+.character {
+  width: 70px;
+  height: 90px;
+  overflow: hidden; 
+}
+
+#characterSpriteSheet {
+  width: 190px;
+  height: 90px;
+  animation: moveSpriteSheet 1s steps(3) infinite;
+  overflow: hidden; 
+}
+
+
+@keyframes moveSpriteSheet {
+    
+  0% {
+      transform: translate3d(0px, 0,0);
+  }
+  100% {
+      transform: translate3d(-100%, 0,0);
+  }
+}
+
+.blueWarrior, .redWarrior {
+  position: relative;
+}
+.fightingBox {
+  position: relative;
+
+  border: 1px solid #000;
+  margin: 10px;
+  display: inline-block;
+  vertical-align: top;
+
+}
+.warriors {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.fightVisual {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.fightVisual2 {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.fightVisual3 {
+  position: absolute;
+  top: 120px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.fightItem {
+  position: absolute;
+  width: 20px;
+  height: 4px;
+  background-color: rgb(255, 57, 57);
+  animation: fightAnimation 1s infinite;
+}
+
+.fightItem-blue {
+  left: 0;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+
+.fightItem-red {
+  right: 0;
+  animation-direction: alternate-reverse;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes fightAnimation {
+  0% {
+      transform: translate(100px, 0);
+      opacity: 1;
+  }
+  50% {
+      transform: translate(60px, 0);
+      opacity: 0.8;
+  }
+  100% {
+      transform: translate(-100px, 0);
+      opacity: 1;
+  }
 }

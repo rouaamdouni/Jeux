@@ -16,8 +16,9 @@ export class Game {
     const resultDisplay = document.getElementById("gameResult");
 
     resultDisplay.innerHTML = result;
-    result === "Blue team wins!" ? winnerImage.src = "./images/blueWarriors.png" : winnerImage.src = "./images/redWarriors.png"
-    
+    result === "Blue team wins!"
+      ? (winnerImage.src = "./images/blueWarriors.png")
+      : (winnerImage.src = "./images/redWarriors.png");
 
     popup.style.display = "block";
 
@@ -41,6 +42,9 @@ export class Game {
     document
       .querySelector(".startTour")
       .addEventListener("click", () => this.startTour());
+    document
+      .querySelector(".resetGame")
+      .addEventListener("click", () => this.resetGame());
   }
 
   startGame() {
@@ -210,17 +214,6 @@ export class Game {
   }
 
   renderBoard() {
-    console.log(
-      `
-      
-      case 1 -Blue : ${this.board[0].blue.length}| Red : ${this.board[0].red.length}
-      case 2 -Blue :${this.board[1].blue.length} | Red :${this.board[1].red.length}
-      case 3 -Blue :${this.board[2].blue.length} | Red :${this.board[2].red.length}
-      case 4 -Blue :${this.board[3].blue.length} | Red :${this.board[3].red.length}
-      case 5 -Blue :${this.board[4].blue.length} | Red :${this.board[4].red.length}
-      
-      `
-    );
     const boardElement = document.querySelector(".fightingBoxes");
     boardElement.innerHTML = "";
     this.board.forEach((tile, index) => {
@@ -231,9 +224,17 @@ export class Game {
           (w) => `<div class="${w.name
             .split(" ")[0]
             .toLowerCase()}Div blueWarrior"><div class="name">${w.name}</div>
-            <img src="../images/blue/blue-${w.name
-              .split(" ")[0]
-              .toLowerCase()}.png" alt="warrior img">
+
+       
+            <div class="character">
+              <img src="images/sprites/blue${w.name
+                .split(" ")[0]
+                .toLowerCase()}.png" alt="Blue Elffe"
+              width="120px" height="70px" 
+              id="characterSpriteSheet">
+           </div>
+
+           
 
             <div class="hp">${w.healthPoints}</div></div>`
         )
@@ -244,16 +245,39 @@ export class Game {
             .split(" ")[0]
             .toLowerCase()}Div redWarrior" ><div class="name">${w.name}</div>
             
-            <img src="../images/red/red-${w.name
-              .split(" ")[0]
-              .toLowerCase()}.png" alt="warrior img">
+            <div class="character">
+              <img src="images/sprites/red${w.name
+                .split(" ")[0]
+                .toLowerCase()}.png" alt="Red Elffe"
+              width="120px" height="70px"
+              id="characterSpriteSheet">
+            </div>
 
             <div class="hp">${w.healthPoints}</div></div>`
         )
         .join("");
+      const fightVisuals = `
+        <div class="fightVisual">
+            <div class="fightItem fightItem-blue"></div>
+            <div class="fightItem fightItem-red"></div>
+        </div>
+        <div class="fightVisual2">
+        <div class="fightItem fightItem-blue"></div>
+        <div class="fightItem fightItem-red"></div>
+    </div>
+    <div class="fightVisual3">
+    <div class="fightItem fightItem-blue"></div>
+    <div class="fightItem fightItem-red"></div>
+</div>
+    `;
       tileElement.innerHTML = `
                 <div class="warriors blue">${blueWarriors}</div>
                 <div class="warriors red">${redWarriors}</div>
+                ${
+                  tile.blue.length > 0 && tile.red.length > 0
+                    ? fightVisuals
+                    : ""
+                }
             `;
       boardElement.appendChild(tileElement);
     });
@@ -292,19 +316,19 @@ export class Game {
       setTimeout(() => {
         if (!document.querySelector(".winnerPopup")) {
           this.showGameResultPopup("Red team wins!");
-      //     winnerPopUp.innerHTML = `<div class="winnerPopup">
-      //   <div class="winnerPopupContent">
-      //     <h1 style=' color: red;'
+          //     winnerPopUp.innerHTML = `<div class="winnerPopup">
+          //   <div class="winnerPopupContent">
+          //     <h1 style=' color: red;'
 
-      //     >Red team wins!</h1>
-      //     <button class="resetGame">Play Again</button>
-      //   </div>
-      // </div>`;
-      //     document.querySelector(".gameControls").appendChild(winnerPopUp);
-      //     document.querySelector(".resetGame").addEventListener("click", () => {
-      //       winnerPopUp.remove();
-      //       this.resetGame();
-      //     });
+          //     >Red team wins!</h1>
+          //     <button class="resetGame">Play Again</button>
+          //   </div>
+          // </div>`;
+          //     document.querySelector(".gameControls").appendChild(winnerPopUp);
+          //     document.querySelector(".resetGame").addEventListener("click", () => {
+          //       winnerPopUp.remove();
+          //       this.resetGame();
+          //     });
         }
       }, 1000); // Delay the alert by 2 seconds to allow time for UI update
       return true;
