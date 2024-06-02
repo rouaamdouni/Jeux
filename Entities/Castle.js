@@ -6,7 +6,7 @@ import { ChefElfe } from "./ChefElfe.js";
 export class Castle {
   constructor(color) {
     this.color = color;
-    this.resources = 4;
+    this.resources = 3;
     this.queue = [];
     this.trainingArea = document.querySelector(`.${color}TrainingPhase`);
     this.resourceDisplay = document.querySelector(`.${color}Ressources`);

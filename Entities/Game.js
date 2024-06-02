@@ -3,22 +3,29 @@ import { Castle } from "./Castle.js";
 export class Game {
   constructor() {
     this.tourStarted = false;
+    this.tourNumber = 0;
     this.blueCastle = new Castle("blue");
     this.redCastle = new Castle("red");
     this.board = Array.from({ length: 5 }, () => ({ blue: [], red: [] }));
     this.setupGameControls();
     this.renderBoard();
   }
+  resetLogs() {
+    let logs = document.getElementById("logs");
+    logs.innerHTML = "";
+  }
   showGameResultPopup(result) {
     const winnerImage = document.getElementById("winnerImage");
     const popup = document.getElementById("gameResultPopup");
     const span = document.getElementById("closeGameResult");
     const resultDisplay = document.getElementById("gameResult");
+    const resetGame = document.getElementById("resetGame");
 
     resultDisplay.innerHTML = result;
     result === "Blue team wins!"
       ? (winnerImage.src = "../images/blueWarriors.png")
       : (winnerImage.src = "../images/redWarriors.png");
+
 
     popup.style.display = "block";
 
@@ -26,6 +33,46 @@ export class Game {
     span.onclick = function () {
       popup.style.display = "none";
     };
+
+    resetGame.addEventListener("click", () => {
+      popup.style.display = "none";
+      this.resetGame();
+    }
+    );
+
+    // When the user clicks anywhere outside of the popup, close it
+    window.onclick = function (event) {
+      if (event.target == popup) {
+        popup.style.display = "none";
+      }
+    };
+  }
+
+  showTourResultPopup(result) {
+    const popup = document.getElementById("tourPopup");
+    const span = document.getElementById("closeTourPopup");
+    const resultDisplay = document.getElementById("tourNumber");
+    const endTheGame = document.getElementById("endGame");
+    const trainMorePlayersAndContinue = document.getElementById("continueGame");
+
+    resultDisplay.innerHTML = result;
+
+    popup.style.display = "flex";
+
+    // When the user clicks on <span> (x), close the popup
+    span.onclick = function () {
+      popup.style.display = "none";
+    };
+
+    endTheGame.addEventListener("click", () => {
+      popup.style.display = "none";
+      this.startTour();
+    });
+
+    trainMorePlayersAndContinue.addEventListener("click", () => {
+      popup.style.display = "none";
+   
+    });
 
     // When the user clicks anywhere outside of the popup, close it
     window.onclick = function (event) {
@@ -54,6 +101,7 @@ export class Game {
 
   startTour() {
     this.tourStarted = true; // Set tourStarted flag to true
+    this.tourNumber += 1;
     this.startAutomaticTour();
   }
 
@@ -152,6 +200,9 @@ export class Game {
   async battleWarriors(tile, index) {
     console.log("---------Fighting Started----------");
 
+    let logs = document.getElementById("logs");
+    logs.innerHTML += ` <p> -------------Tour N: ${this.tourNumber} started ------------- </p> `; 
+
     while (tile.blue.length > 0 && tile.red.length > 0) {
       // Blue will attack first; each blue warrior will attack each red warrior
       for (let i = 0; i < tile.blue.length && tile.red.length > 0; i++) {
@@ -160,12 +211,15 @@ export class Game {
         tile.red[0].takeDamage(blueDamage);
 
         console.log(
-          ` Tile ${index + 1}: Blue ${blueWarrior.name} | ${
-            blueWarrior.healthPoints
-          } attacks Red ${tile.red[0].name} for ${blueDamage} damage. | ${
+          ` Tile ${index + 1}: Blue ${blueWarrior.name} attacks Red ${tile.red[0].name} for ${blueDamage} damage. | ${
             tile.red[0].healthPoints
           }`
         );
+
+       
+        logs.innerHTML += ` <p> Box ${index + 1}: Blue ${blueWarrior.name} | ${
+          blueWarrior.healthPoints
+        } attacks Red ${tile.red[0].name} for ${blueDamage} damage </p>`;
 
         this.renderBoard();
 
@@ -188,6 +242,11 @@ export class Game {
           } for ${redDamage} damage. | ${tile.blue[0].healthPoints}`
         );
 
+        logs.innerHTML += `<p> Box ${index + 1} : Red ${redWarrior.name} attacks Blue ${
+          tile.blue[0].name
+        } for ${redDamage} damage </p>`;
+
+
         this.renderBoard();
 
         if (tile.blue[0].healthPoints <= 0) {
@@ -201,6 +260,9 @@ export class Game {
     console.log("---------Fighting Ended----------");
     this.updateResources();
     this.tourStarted = false;
+    logs.innerHTML += ` <p> ------------- Tour N: ${this.tourNumber} ended --------- </p> `;
+    this.showTourResultPopup(`Tour ${this.tourNumber} ended!`);
+
   }
 
   updateResources() {
@@ -292,24 +354,9 @@ export class Game {
       setTimeout(() => {
         if (!document.querySelector(".winnerPopup")) {
           this.showGameResultPopup("Blue team wins!");
-          //     winnerPopUp.innerHTML = `<div class="winnerPopup">
-          //   <div class="winnerPopupContent">
-          //     <h1
-          //       style="
-          //         color: blue;
-          //       "
-          //     >Blue team wins!</h1>
-          //     <button class="resetGame">Play Again</button>
-          //   </div>
-          // </div>`;
-          //     document.querySelector(".gameControls").appendChild(winnerPopUp);
-          //     document.querySelector(".resetGame").addEventListener("click", () => {
-          //       winnerPopUp.remove();
-          //       this.resetGame();
-          //     });
         }
         this.resetGame();
-      }, 1000); // Delay the alert by 2 seconds to allow time for UI update
+      }, 300); // Delay the alert by 2 seconds to allow time for UI update
       return true;
     }
     // Check if the first tile (index 0) has red warriors
@@ -317,22 +364,9 @@ export class Game {
       setTimeout(() => {
         if (!document.querySelector(".winnerPopup")) {
           this.showGameResultPopup("Red team wins!");
-          //     winnerPopUp.innerHTML = `<div class="winnerPopup">
-          //   <div class="winnerPopupContent">
-          //     <h1 style=' color: red;'
-
-          //     >Red team wins!</h1>
-          //     <button class="resetGame">Play Again</button>
-          //   </div>
-          // </div>`;
-          //     document.querySelector(".gameControls").appendChild(winnerPopUp);
-          //     document.querySelector(".resetGame").addEventListener("click", () => {
-          //       winnerPopUp.remove();
-          //       this.resetGame();
-          //     });
         }
         this.resetGame();
-      }, 1000); // Delay the alert by 2 seconds to allow time for UI update
+      }, 300); // Delay the alert by 2 seconds to allow time for UI update
       return true;
     }
     return false;
@@ -340,6 +374,8 @@ export class Game {
 
   resetGame() {
     this.tourStarted = false;
+    this.tourNumber = 0;
+    this.resetLogs();
     this.board = Array.from({ length: 5 }, () => ({ blue: [], red: [] }));
     this.blueCastle.resources = 3;
     this.redCastle.resources = 3;

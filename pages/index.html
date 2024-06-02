@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faerun Game</title>
     <link rel="stylesheet" href="/styles/style.css">
+    <link rel="shortcut icon" href="/images/blue/blue-elfe.png" type="image/x-icon">
 </head>
 
 <script type="module" src="../app.js" defer></script>
@@ -13,15 +14,13 @@
 <body>
     <audio
     id="start-sound"
-    src="audio/startSound.m4a"
+    src="../audio/startSound.m4a"
     preload="auto"
     autoplay
     loop
     ></audio>
     <div class="game">
-        <h1>
-            Welcome To Faerun Game
-        </h1>
+    
         <div class="gameContainer"> 
            
                 
@@ -29,7 +28,7 @@
             <div class="castleTrainings">
 
                 <div class="castle2Data ">
-                    <div class="blueWarriors" style="display: flex;">
+                    <div class="blueWarriors" style="display: none;">
                         <h4 class="blueCardTitle">Train Blue Warriors</h4>
 
                         <img src="/images/blueWarriors.png" alt="">
@@ -91,15 +90,18 @@
                 
 
                 <div class="gameControls">
-                    <div>
-                        <!-- <h2>Game Result</h2> -->
-                    </div>
+                 
+                        <h2>Game Controls</h2>
+          
+                   <div class="gameControlBtns">
                     <button class="btn-dedcoration startTour " >
                         Start a new tour
                     </button>
                     <button class="btn-dedcoration startGame">
                         Reset Game
                     </button>
+                   </div>
+                   <div class="logs" id="logs"></div>
                 </div>
 
                 <div class="castle1Data ">
@@ -183,11 +185,30 @@
                     <img src="" alt="Picture of the Winner" id="winnerImage">
                     
                     <h3 id="gameResult"></h3>
-                    <button class="btn-dedcoration" id="resetGame">
+                    <button class="btn-dedcoration resetGame" id="resetGame">
                         Reset Game
                     </button>
                 </div>
                 
+            </div>
+
+            <div id="tourPopup" class="tourPopup">
+                <div class="tourPopup-content">
+                    <div class="popupHead">
+                        <h2>Tours Informations</h2>
+                        <span id="closeTourPopup">&times;</span>
+                    </div>
+                    <h3 id="tourNumber"></h3>
+                    <div class="buttons">
+                        <button class="btn-dedcoration" id="endGame">
+                            End the Game 
+                        </button>
+                        <button class="btn-dedcoration" id="continueGame">
+                            Train More Warriors
+                        </button>
+                    </div>
+                    
+                </div>
             </div>
 
         </div>

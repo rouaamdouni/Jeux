@@ -4,47 +4,56 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Battle of Faërun</title>
-    <link rel="stylesheet" href="/styles//screen.css" />
+    <link rel="stylesheet" href="../styles/screen.css" />
   </head>
   <body>
+    <audio
+    id="start-sound"
+    src="/audio/startSound.m4a"
+    preload="auto"
+    autoplay
+    loop
+    ></audio>
+   
     <div class="screenContainer">
-      <div class="container1">
+      <!-- <div class="container1"> -->
         <div class="contentContainer1">
           <h1>The Battle of Faërun</h1>
           <h3>Choose Your Side and Lead Your Warriors to Victory!</h3>
+          <div class="castles">
+            <div class="redCastle">
+              <h4>Red Castle</h4>
+            </div>
+            <h3>VS</h3>
+            <div class="blueCastle">
+              <h4>Blue Castle</h4>
+            </div>
+          </div>
           <div class="description">
-            <p>
-              Two castles, one blue and one red, each train a team of warriors
+            <p class="firstParagraphe">
+              Game principles : Two castles, one blue and one red, each train a team of warriors
               composed of different types (elf chief, elf, dwarf chief, dwarf)
               and send them into battle on a game board made up of a series of
               tiles. Each warrior has a type, strength, and a certain number of
               health points. The strength and type of a warrior determine the
               power of their attacks and the impact of the blows they receive.
             </p>
-            <br /><br />
-            <span>Join the Epic Battle:</span>
-            <ul>
-              <li>Train your warriors and prepare for intense battles.</li>
-              <li>
-                Each warrior's unique attributes contribute to your strategy.
-              </li>
-              <li>
-                The first team to reach the opponent's starting tile wins.
-              </li>
-            </ul>
-            Are you ready to lead your team to victory? Choose your side and
-            dive into the battle of Faërun!
+         
+            <p class="secondParagraphe">  Are you ready to lead your team to victory? Choose your side and
+              dive into the battle of Faërun!</p>
           </div>
           <button id="startButton">Start Game</button>
-        </div>
+        <!-- </div> -->
       </div>
-      <div class="castleSection" id="blueCastle">
+
+
+      <!-- <div class="castleSection" id="blueCastle">
         <h2>Blue Castle</h2>
-        <img src="images/blueCastle.png" alt="Blue Castle" />
+        <img src="../images/blueCastle.png" alt="Blue Castle" />
         <div class="warriors">
           <div class="warrior">
             <img
-              src="images//blue/blue-nain.png"
+              src="../images/blue/blue-nain.png"
               style="height: 250px; width: 250px"
               alt="Dwarf"
             />
@@ -53,7 +62,7 @@
           </div>
           <div class="warrior">
             <img
-              src="images/blue/blue-elfe.png"
+              src="../images/blue/blue-elfe.png"
               style="height: 250px; width: 250px"
               alt="Elf"
             />
@@ -61,13 +70,13 @@
             <p>Force: 20, Health Points: 100</p>
           </div>
           <div class="warrior">
-            <img src="images/blue/blue-chefNain.png" alt="Dwarf Chief" />
+            <img src="../images/blue/blue-chefNain.png" alt="Dwarf Chief" />
             <h3>Dwarf Chief</h3>
             <p>Force: 10, Health Points: 100</p>
           </div>
           <div class="warrior">
             <img
-              src="images/blue/blue-chefElfe.png"
+              src="../images/blue/blue-chefElfe.png"
               style="height: 250px; width: 250px"
               alt="Elf Chief"
             />
@@ -78,11 +87,11 @@
       </div>
       <div class="castleSection" id="redCastle">
         <h2>Red Castle</h2>
-        <img src="images//redCastle.png" alt="Red Castle" />
+        <img src="../images/redCastle.png" alt="Red Castle" />
         <div class="warriors">
           <div class="warrior">
             <img
-              src="images/red/red-nain.png
+              src="../images/red/red-nain.png
             "
               style="height: 250px; width: 250px"
               alt="Dwarf"
@@ -92,7 +101,7 @@
           </div>
           <div class="warrior">
             <img
-              src="images/red/red-elfe.png"
+              src="../images/red/red-elfe.png"
               style="height: 250px; width: 250px"
               alt="Elf"
             />
@@ -100,13 +109,13 @@
             <p>Force: 20, Health Points: 100</p>
           </div>
           <div class="warrior">
-            <img src="images/red/red-chefNain.png" alt="Dwarf Chief" />
+            <img src="../images/red/red-chefNain.png" alt="Dwarf Chief" />
             <h3>Dwarf Chief</h3>
             <p>Force: 10, Health Points: 100</p>
           </div>
           <div class="warrior">
             <img
-              src="images/red/red-chefElfe.png"
+              src="../images/red/red-chefElfe.png"
               style="height: 250px; width: 250px"
               alt="Elf Chief"
             />
@@ -114,7 +123,10 @@
             <p>Force: 40, Health Points: 100</p>
           </div>
         </div>
-      </div>
+      </div> -->
+
+
+
     </div>
     <script>
       document.getElementById("startButton").addEventListener("click", () => {
